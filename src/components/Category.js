@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
 function Category() {
@@ -37,9 +37,11 @@ function Category() {
           {Array.isArray(recipes) &&
             recipes.slice(0, count).map((recipe) => {
               return (
-                <div>
-                  {recipe.strMeal}
-                  ID: {recipe.idMeal}
+                <div key={recipe.idMeal}>
+                  <h3>{recipe.strMeal}</h3>
+                  <img className='w-[170px] block' src={recipe.strMealThumb} alt={recipe.strMeal} />
+                  {recipe.idMeal}
+                 <Link to={`/${params.categoryId}/${recipe.idMeal}`}>Recipe</Link>
                 </div>
               );
             })}
