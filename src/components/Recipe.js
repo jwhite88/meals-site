@@ -70,14 +70,14 @@ function Recipe() {
         <div>
           <h3 className='py-2'>Directions</h3>
           <ul>
-            {Array.isArray(instructions && instructions.length > 0 && instructions.map((instruction, idx) => { 
+            {Array.isArray(instructions) && instructions.length > 0 && instructions.map((instruction, idx) => { 
                 {/* console.log({instruction}) */}
                 let parseInst = instruction.replace("\r\n\r\n", "");
-                console.log({ parseInst });
+                console.log("stringVal: ", parseInst);
                 return (
                     <li key={idx}>{parseInst}.</li>
                 )
-             }))}
+             })}
           </ul>
         </div>
       </section>

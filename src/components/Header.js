@@ -21,7 +21,7 @@ function Header() {
         <div>Logo</div>
         <div>Search</div>
         <div>
-          <ul class='flex flex-row'>
+          <ul className='flex flex-row'>
             {categories.map((category, idx) => {
               return (
                 <li key={idx} className='pr-5'>
