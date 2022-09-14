@@ -16,3 +16,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.recipe-menu {
+  /* position: fixed;
+  opacity: 0; */
+  /* display: none; */
+  z-index: 100;
+}

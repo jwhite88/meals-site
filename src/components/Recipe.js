@@ -22,7 +22,6 @@ function Recipe() {
             setIngredients([]);
             setMeasure([])
             while (mealData[0][`strIngredient${num}`] !== null && continueWhileLoop) {
-             // console.log("testing: ", mealData[0][`strIngredient${num}`]);
               let newIng = mealData[0][`strIngredient${num}`];
               let newMea = mealData[0][`strMeasure${num}`];
 
@@ -34,7 +33,6 @@ function Recipe() {
               }
             }
             setRecipe(data.data.meals);
-            console.log(data.data.meals[0]["strInstructions"].split("."));
             setInstructions(data.data.meals[0]['strInstructions'].split("."));
           })
           .catch((err) => { 
@@ -71,9 +69,7 @@ function Recipe() {
           <h3 className='py-2'>Directions</h3>
           <ul>
             {Array.isArray(instructions) && instructions.length > 0 && instructions.map((instruction, idx) => { 
-                {/* console.log({instruction}) */}
                 let parseInst = instruction.replace("\r\n\r\n", "");
-                console.log("stringVal: ", parseInst);
                 return (
                     <li key={idx}>{parseInst}.</li>
                 )

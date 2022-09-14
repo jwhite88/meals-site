@@ -11,7 +11,6 @@ function Category() {
     useEffect(() => {
         axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.categoryId}`)
         .then((meals) => {  
-            console.log(meals.data.meals)
             setCount(10);
             setMax(meals.data.meals.length)
             setRecipes(meals.data.meals);
@@ -27,7 +26,6 @@ function Category() {
         } else {
             setCount(max)
         }
-        
       }
   return (
     <div>
