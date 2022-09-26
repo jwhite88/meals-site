@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useContext } from 'react'
+import React, {useState, useEffect, useRef, useContext, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './Header.css'
@@ -16,7 +16,9 @@ const categories = [
 ];
 
 function Header() {
-  const categoryHolder = useRef()
+  const categoryHolder = useRef();
+  const searchInput = useRef()
+  const [search, setSearch] = useState("");
   const [showHeader, setShowHeader] = useContext(HeaderContext);
 
   useEffect(() => {
@@ -30,13 +32,34 @@ function Header() {
     setShowHeader(true)
   }, [showHeader]);
 
+  const handleSearchChange = (evt) => {
+    evt.preventDefault()
+    setSearch(evt.target.value);
+  }
+
+   const handleSubmit = useCallback(
+     (evt) => {
+       evt.preventDefault();
+       console.log(evt.keyCode);
+       if (evt.keyCode === 13) {
+         console.log("yes 13");
+         setSearch("");
+         searchInput.current.value=""
+       }
+     },
+     [search]
+   );
+   ;
+
   return (
     <div className={`${showHeader ? "bg-image" : ""}`}> 
       <nav className='relative flex flex-row w-screen justify-between items-center h-12 px-8 bg bg-slate-100 '>
         <div>
           <Link to='/'>Logo</Link>
         </div>
-        <div className='pl-48'>Search</div>
+        <div className='pl-48'>
+          <input ref={searchInput} type="text" name={search} id="search" onChange={handleSearchChange} onKeyUp={handleSubmit} placeholder="Search for Recipes..." className='inline-block pl-2' />
+        </div>
         <div>
           <div className=''>
             <ul
