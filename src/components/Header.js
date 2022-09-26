@@ -1,6 +1,8 @@
-import React, {useState, useEffect, useRef } from 'react'
+import React, {useState, useEffect, useRef, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import './Header.css'
+import HeaderContext from '../utils/showhideheader'
 
 const categories = [
   "Beef",
@@ -15,6 +17,7 @@ const categories = [
 
 function Header() {
   const categoryHolder = useRef()
+  const [showHeader, setShowHeader] = useContext(HeaderContext);
 
   useEffect(() => {
    // categoryHolder.current.style['color'] = 'blue'
@@ -23,31 +26,13 @@ function Header() {
     };
   }, []);
 
-// hover:[&>ul]:opacity-100 
-
-// const handleMouseEnter = (evt) => {
-//   //evt.target.stopPropagation();
-//   console.log(evt.target.nextSibling);
-//   if (evt.target.nextSibling.classList.contains('recipe-menu')) {
-//     evt.target.nextSibling.classList.remove('recipe-menu')
-//   } else {
-//     // evt.target.nextSibling.classList.add('recipe-menu')
-//   }
-// }
-
-// const handleMouseLeave = (evt) => {
-//   //evt.target.stopPropagation();
-//   console.log(evt.target);
-//   if (!categoryHolder.current.classList.contains("recipe-menu")) {
-//      categoryHolder.current.classList.add("recipe-menu");
-//   } else {
-//     // evt.target.nextSibling.classList.add('recipe-menu')
-//   }
-// };
+  useEffect(() => {
+    setShowHeader(true)
+  }, [showHeader]);
 
   return (
-    <div>
-      <nav className='flex flex-row w-screen justify-between px-8'>
+    <div className={`${showHeader ? "bg-image" : ""}`}> 
+      <nav className='relative flex flex-row w-screen justify-between items-center h-12 px-8 bg bg-slate-100 '>
         <div>
           <Link to='/'>Logo</Link>
         </div>
@@ -69,6 +54,9 @@ function Header() {
           </div>
         </div>
       </nav>
+      <section>
+        {showHeader && <h1 className='tex text-9xl text-slate-200 '>Meals are Great!!</h1>}
+      </section>
     </div>
   );
 }

@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
+import HeaderContext from '../utils/showhideheader';
+
 
 function Recipe() {
     const params = useParams();
@@ -8,6 +10,7 @@ function Recipe() {
     const [ingredients, setIngredients] = useState([]);
     const [measure, setMeasure] = useState([]);
     const [instructions, setInstructions] = useState([]);
+    const [showHeader, setShowHeader] = useContext(HeaderContext);
 
     let x = true;
 
@@ -40,25 +43,36 @@ function Recipe() {
            })
       return () => {};
     }, [params.recipeId]);
+
+    useEffect(() => {
+      setShowHeader(false);
+    }, [showHeader]);
   return (
-    <div>
+    <div className='container mx-auto'>
       <section>
-        <h1>{recipe.length > 0 && recipe[0].strMeal}</h1>
+        <h1 className='text-xl py-4'>
+          {recipe.length > 0 && recipe[0].strMeal}
+        </h1>
         <div>
-          <img src={recipe.length > 0 && recipe[0].strMealThumb} alt='' srcset='' />
+          <img
+            src={recipe.length > 0 && recipe[0].strMealThumb}
+            alt=''
+            srcset=''
+          />
         </div>
       </section>
       <section>
         <div>
-          <h3 className='pb-2'>Ingredients</h3>
-          <ul>
+          <h3 className='text-3xl text-sky-800 py-2 directions-ingredients'>Ingredients</h3>
+          <ul className='pb-3'>
             {Array.isArray(ingredients) &&
               ingredients.length > 0 &&
               ingredients.map((item, idx) => {
                 if (item !== null) {
                   return (
-                    <li>
-                      {item} and {measure[idx]}
+                    <li className='pb-1'>
+                      <span className='inline-block'>{item}</span>:{" "}
+                      <span className='inline-block'>{measure[idx]}</span>
                     </li>
                   );
                 } else return "";
@@ -66,14 +80,18 @@ function Recipe() {
           </ul>
         </div>
         <div>
-          <h3 className='py-2'>Directions</h3>
-          <ul>
-            {Array.isArray(instructions) && instructions.length > 0 && instructions.map((instruction, idx) => { 
+          <h3 className='text-3xl text-sky-800 py-2 directions-ingredients'>Directions</h3>
+          <ul className='pb-3'>
+            {Array.isArray(instructions) &&
+              instructions.length > 0 &&
+              instructions.map((instruction, idx) => {
                 let parseInst = instruction.replace("\r\n\r\n", "");
                 return (
-                    <li key={idx}>{parseInst}.</li>
-                )
-             })}
+                  <li className='pb-2 max-w-screen-md' key={idx}>
+                    {parseInst}.
+                  </li>
+                );
+              })}
           </ul>
         </div>
       </section>

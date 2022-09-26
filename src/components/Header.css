@@ -1,0 +1,8 @@
+.bg-image {
+    /* width: 100vw; */
+    height: 66.6vh;
+    background-color: blueviolet;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../assets/images/meals-unsplash-v1.jpg');
+}

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
+import HeaderContext from '../utils/showhideheader'
 
 function Category() {
     const params = useParams()
     const [recipes, setRecipes] = useState([]);
     const [count, setCount] = useState(10);
     const [max, setMax] = useState(0);
+    const [showHeader, setShowHeader] = useContext(HeaderContext);
 
     useEffect(() => {
         axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.categoryId}`)
@@ -19,6 +21,10 @@ function Category() {
             
         };
     }, [params.categoryId]);
+
+    useEffect(() => {
+      setShowHeader(true)
+    }, [showHeader]);
 
     const loadMore = () => {
         if ((count + 10) % 10 === 0 ) {
