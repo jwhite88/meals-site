@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './Header.css'
 import HeaderContext from '../utils/showhideheader'
+import { recipeSearch } from '../utils/recipeapiFns'
 
 const categories = [
   "Beef",
@@ -43,7 +44,17 @@ function Header() {
        console.log(evt.keyCode);
        if (evt.keyCode === 13) {
          console.log("yes 13");
-         setSearch("");
+          console.log('from search')
+          recipeSearch(search)
+          .then((result) => {
+            console.log(result.meals)
+            if (result.meals === null) {
+              console.log("No hits")
+            }
+          })
+          .catch((err) => {
+            console.log(`An ${err} has occurred`);
+          })
          searchInput.current.value=""
        }
      },

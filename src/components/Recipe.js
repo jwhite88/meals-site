@@ -50,7 +50,7 @@ function Recipe() {
   return (
     <div className='container mx-auto'>
       <section>
-        <h1 className='text-xl py-4'>
+        <h1 className='text-5xl py-4 capitalize'>
           {recipe.length > 0 && recipe[0].strMeal}
         </h1>
         <div>
@@ -63,8 +63,10 @@ function Recipe() {
       </section>
       <section>
         <div>
-          <h3 className='text-3xl text-sky-800 py-2 directions-ingredients'>Ingredients</h3>
-          <ul className='pb-3'>
+          <h3 className='text-3xl text-sky-800 pt-6 pb-4 mb-3 directions-ingredients border-b max-w-[44rem]'>
+            Ingredients
+          </h3>
+          <ul className='pb-3 pl-2'>
             {Array.isArray(ingredients) &&
               ingredients.length > 0 &&
               ingredients.map((item, idx) => {
@@ -80,8 +82,10 @@ function Recipe() {
           </ul>
         </div>
         <div>
-          <h3 className='text-3xl text-sky-800 py-2 directions-ingredients'>Directions</h3>
-          <ul className='pb-3'>
+          <h3 className='text-3xl text-sky-800 pt-6 pb-4 mb-3 directions-ingredients  border-b max-w-[44rem]'>
+            Directions
+          </h3>
+          <ul className='pb-3 pl-2'>
             {Array.isArray(instructions) &&
               instructions.length > 0 &&
               instructions.map((instruction, idx) => {

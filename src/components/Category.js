@@ -42,7 +42,7 @@ function Category() {
             recipes.slice(0, count).map((recipe) => {
               return (
                 <div key={recipe.idMeal}>
-                  <h3 className='pb-1 text-lg pl-2'>{recipe.strMeal.substring(0,25)}{recipe.strMeal.length > 25 ? "..." : ""}</h3>
+                  <h3 className='pb-1 text-lg pl-2 capitalize'>{recipe.strMeal.substring(0,25)}{recipe.strMeal.length > 25 ? "..." : ""}</h3>
                   <img
                     className='w-[250px] block rounded-md'
                     src={recipe.strMealThumb}
