@@ -9,8 +9,8 @@ const recipeSearch = async (searchValue) => {
 }
 
 const loadMore = (count, setCount, max) => {
-  if ((count + 10) % 10 === 0) {
-    setCount((previous) => previous + 10);
+  if ((count + 12) % 12 === 0) {
+    setCount((previous) => previous + 12);
   } else {
     setCount(max);
   }

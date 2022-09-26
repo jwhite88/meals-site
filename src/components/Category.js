@@ -7,7 +7,7 @@ import { loadMore } from '../utils/recipeapiFns'
 function Category() {
     const params = useParams()
     const [recipes, setRecipes] = useState([]);
-    const [count, setCount] = useState(10);
+    const [count, setCount] = useState(12);
     const [max, setMax] = useState(0);
     const [showHeader, setShowHeader] = useContext(HeaderContext);
 

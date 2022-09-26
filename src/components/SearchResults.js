@@ -10,11 +10,10 @@ export default function SearchResults() {
   return (
     <div>
       <section className='container mx-auto'>
-        <h1 className='directions-ingredients text-2xl py-4'>
-          {/* {params.categoryId} Recipes */}
-        </h1>
+        <h1 className='directions-ingredients text-2xl py-4'>Search Results</h1>
         <div className='flex flex-row flex-wrap justify-around gap-8'>
           {Array.isArray(recipeSearchResults) &&
+          recipeSearchResults.length > 0 ? (
             recipeSearchResults.slice(0, count).map((recipe) => {
               return (
                 <div key={recipe.idMeal}>
@@ -28,14 +27,19 @@ export default function SearchResults() {
                     alt={recipe.strMeal}
                   />
                   {/* {recipe.idMeal} */}
-                  <Link to={`/${recipeSearchResults.strCategory}/${recipeSearchResults.idMeal}`}>
+                  <Link
+                    to={`/${recipe.strCategory}/${recipe.idMeal}`}
+                  >
                     <span className='inline-block mt-2 pt-02 border border-2 border-emerald-800 min-w-[5rem] rounded-md text-center'>
                       Recipe
                     </span>
                   </Link>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <span className='text-xl'>No Results</span>
+          )}
         </div>
         {count < max && (
           <button
