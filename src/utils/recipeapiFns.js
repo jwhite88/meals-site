@@ -8,6 +8,15 @@ const recipeSearch = async (searchValue) => {
     return result.data;
 }
 
+const loadMore = (count, setCount, max) => {
+  if ((count + 10) % 10 === 0) {
+    setCount((previous) => previous + 10);
+  } else {
+    setCount(max);
+  }
+};
+
 export {
-    recipeSearch
+    recipeSearch,
+    loadMore
 }

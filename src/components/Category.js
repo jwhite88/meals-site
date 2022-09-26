@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import HeaderContext from '../utils/showhideheader'
+import { loadMore } from '../utils/recipeapiFns'
 
 function Category() {
     const params = useParams()
@@ -26,13 +27,6 @@ function Category() {
       setShowHeader(true)
     }, [showHeader]);
 
-    const loadMore = () => {
-        if ((count + 10) % 10 === 0 ) {
-            setCount((previous) => previous + 10);
-        } else {
-            setCount(max)
-        }
-      }
   return (
     <div>
       <section className='container mx-auto'>
@@ -58,7 +52,7 @@ function Category() {
               );
             })}
         </div>
-        {count < max && <button className='block border-solid border-[1.75px] border-teal-800 rounded-md min-w-[8rem] mt-4 text-xl' onClick={loadMore}>Load More</button>}
+        {count < max && <button className='block border-solid border-[1.75px] border-teal-800 rounded-md min-w-[8rem] mt-4 text-xl' onClick={()=> loadMore(count, setCount, max)}>Load More</button>}
       </section>
     </div>
   );

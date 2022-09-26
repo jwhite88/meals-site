@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useContext, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import './Header.css'
 import HeaderContext from '../utils/showhideheader'
@@ -20,7 +20,8 @@ function Header() {
   const categoryHolder = useRef();
   const searchInput = useRef()
   const [search, setSearch] = useState("");
-  const [showHeader, setShowHeader] = useContext(HeaderContext);
+ const [showHeader, setShowHeader, recipeSearchResults, setRecipeSearchResults ] = useContext(HeaderContext)
+ const navigate = useNavigate()
 
   useEffect(() => {
    // categoryHolder.current.style['color'] = 'blue'
@@ -47,9 +48,11 @@ function Header() {
           console.log('from search')
           recipeSearch(search)
           .then((result) => {
-            console.log(result.meals)
+            console.log(result.meals);
+            setRecipeSearchResults(result.meals);
+            navigate(`/searchresults`);
             if (result.meals === null) {
-              console.log("No hits")
+              console.log("No hits");
             }
           })
           .catch((err) => {
