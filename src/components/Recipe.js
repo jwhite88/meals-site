@@ -55,6 +55,7 @@ function Recipe() {
         </h1>
         <div>
           <img
+            className='rounded-[60px]'
             src={recipe.length > 0 && recipe[0].strMealThumb}
             alt=''
             srcset=''

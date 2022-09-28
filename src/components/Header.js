@@ -5,16 +5,7 @@ import './Header.css'
 import HeaderContext from '../utils/showhideheader'
 import { recipeSearch } from '../utils/recipeapiFns'
 
-const categories = [
-  "Beef",
-  "Chicken",
-  "Pork",
-  "Lamb",
-  "Seafood",
-  "Pasta",
-  "Vegetarian",
-  "Dessert",
-];
+import { categories } from '../utils/categories'
 
 function Header() {
   const categoryHolder = useRef();
