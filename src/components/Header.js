@@ -57,20 +57,26 @@ function Header() {
    ;
 
   return (
-    <div className={`${showHeader ? "bg-image" : ""}`}> 
-      <nav className='relative flex flex-row w-screen justify-between items-center h-12 px-8 bg bg-slate-100 '>
+    <div className={`${showHeader ? "bg-image" : ""}`}>
+      <nav className="relative flex flex-row w-screen justify-between items-center h-12 px-8 bg bg-slate-100 font-['Comfortaa'] text-lg">
         <div>
           <Link to='/'>Logo</Link>
         </div>
         <div className='pl-48'>
-          <input ref={searchInput} type="text" name={search} id="search" onChange={handleSearchChange} onKeyUp={handleSubmit} placeholder="Search for Recipes..." className='inline-block pl-2' />
+          <input
+            ref={searchInput}
+            type='text'
+            name={search}
+            id='search'
+            onChange={handleSearchChange}
+            onKeyUp={handleSubmit}
+            placeholder='Search for Recipes...'
+            className='inline-block pl-2'
+          />
         </div>
         <div>
-          <div className=''>
-            <ul
-              className='flex flex-row recipe-menu'
-              ref={categoryHolder}
-            >
+          <div>
+            <ul className='flex flex-row recipe-menu' ref={categoryHolder}>
               {categories.map((category, idx) => {
                 return (
                   <li key={idx} className='pr-5'>
@@ -83,7 +89,9 @@ function Header() {
         </div>
       </nav>
       <section>
-        {showHeader && <h1 className='tex text-9xl text-slate-200 '>Meals are Great!!</h1>}
+        {showHeader && (
+          <h1 className='tex text-9xl text-slate-200 '>Meals are Great!!</h1>
+        )}
       </section>
     </div>
   );
