@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import HeaderContext from '../utils/showhideheader';
+import { GiSpoon } from 'react-icons/gi'
 
 
 function Recipe() {
@@ -48,34 +49,35 @@ function Recipe() {
       setShowHeader(false);
     }, [showHeader]);
   return (
-    <div className='container mx-auto'>
+    <div className="container mx-auto">
       <section>
-        <h1 className='text-5xl py-4 capitalize'>
+        <h1 className="text-5xl py-6 font-['Comfortaa'] capitalize">
           {recipe.length > 0 && recipe[0].strMeal}
         </h1>
         <div>
           <img
-            className='rounded-[60px]'
+            className="rounded-[60px]"
             src={recipe.length > 0 && recipe[0].strMealThumb}
-            alt=''
-            srcset=''
+            alt=""
+            srcset=""
           />
         </div>
       </section>
       <section>
         <div>
-          <h3 className='text-3xl text-sky-800 pt-6 pb-4 mb-3 directions-ingredients border-b max-w-[44rem]'>
+          <h3 className="text-3xl text-sky-800 pt-10 pb-4 mb-3 directions-ingredients border-b max-w-[44rem]">
             Ingredients
           </h3>
-          <ul className='pb-3 pl-2'>
+          <ul className="pb-3 pl-2 font-['Comfortaa'] text-[1.25rem]">
             {Array.isArray(ingredients) &&
               ingredients.length > 0 &&
               ingredients.map((item, idx) => {
                 if (item !== null) {
                   return (
-                    <li className='pb-1'>
-                      <span className='inline-block'>{item}</span>:{" "}
-                      <span className='inline-block'>{measure[idx]}</span>
+                    <li className="pb-4">
+                      <GiSpoon className="inline-block pr-2 mb-3 text-[2rem]" />
+                      <span className="inline-block">{item}</span>:{" "}
+                      <span className="inline-block">{measure[idx]}</span>
                     </li>
                   );
                 } else return "";
@@ -83,16 +85,22 @@ function Recipe() {
           </ul>
         </div>
         <div>
-          <h3 className='text-3xl text-sky-800 pt-6 pb-4 mb-3 directions-ingredients  border-b max-w-[44rem]'>
+          <h3 className="text-3xl text-sky-800 pt-6 pb-4 mb-3 directions-ingredients  border-b max-w-[44rem]">
             Directions
           </h3>
-          <ul className='pb-3 pl-2'>
+          <ul className="pb-3 pl-2 font-['Comfortaa'] text-[1.25rem]">
             {Array.isArray(instructions) &&
               instructions.length > 0 &&
               instructions.map((instruction, idx) => {
                 let parseInst = instruction.replace("\r\n\r\n", "");
+                if (parseInst === "") {
+                  return true;
+                }
                 return (
-                  <li className='pb-2 max-w-screen-md' key={idx}>
+                  <li className="pb-4 max-w-screen-md" key={idx}>
+                    <span className="bol font-bold inline-block pr-0 mr-2">
+                      {idx + 1}.{" "}
+                    </span>
                     {parseInst}.
                   </li>
                 );
