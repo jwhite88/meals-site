@@ -18,8 +18,8 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    setShowHeader(true)
-  }, []);
+    setShowHeader(true);
+  }, [setShowHeader]);
   return (
     <div>
       <section>

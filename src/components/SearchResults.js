@@ -5,7 +5,7 @@ import { loadMore } from '../utils/recipeapiFns';
 
 export default function SearchResults() {
     const [count, setCount] = useState(10);
-    const [max, setMax] = useState(0);
+    // const [max, setMax] = useState(0);
     const [, , recipeSearchResults,  ] = useContext(HeaderContext)
   return (
     <div>
@@ -41,10 +41,10 @@ export default function SearchResults() {
             <span className='text-xl'>No Results</span>
           )}
         </div>
-        {count < max && (
+        {count < 0 && (
           <button
             className='block border-solid border-[1.75px] border-teal-800 rounded-md min-w-[8rem] mt-4 text-xl'
-            onClick={() => loadMore(count, setCount, max)}
+            onClick={() => loadMore(count, 10, setCount, 0)}
           >
             Load More
           </button>

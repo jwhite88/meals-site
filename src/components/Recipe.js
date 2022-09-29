@@ -11,7 +11,7 @@ function Recipe() {
     const [ingredients, setIngredients] = useState([]);
     const [measure, setMeasure] = useState([]);
     const [instructions, setInstructions] = useState([]);
-    const [showHeader, setShowHeader] = useContext(HeaderContext);
+    const [, setShowHeader] = useContext(HeaderContext);
 
     useEffect(() => {
         getRecipe(params.recipeId)
@@ -45,7 +45,7 @@ function Recipe() {
 
     useEffect(() => {
       setShowHeader(false);
-    }, [showHeader]);
+    }, [setShowHeader]);
   return (
     <div className="container mx-auto">
       <section>
@@ -55,9 +55,8 @@ function Recipe() {
         <div>
           <img
             className="rounded-[60px]"
-            src={recipe.length > 0 && recipe[0].strMealThumb}
-            alt=""
-            srcset=""
+            src={recipe.length > 0 ? recipe[0].strMealThumb : ""}
+            alt={recipe.length > 0 ? recipe[0].strMeal : ""}
           />
         </div>
       </section>
@@ -72,7 +71,7 @@ function Recipe() {
               ingredients.map((item, idx) => {
                 if (item !== null) {
                   return (
-                    <li className="pb-4">
+                    <li key={idx} className="pb-4">
                       <GiSpoon className="inline-block pr-2 mb-3 text-[2rem]" />
                       <span className="inline-block">{item}</span>:{" "}
                       <span className="inline-block">{measure[idx]}</span>

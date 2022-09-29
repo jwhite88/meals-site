@@ -8,7 +8,7 @@ function Category() {
     const [recipes, setRecipes] = useState([]);
     const [count, setCount] = useState(0);
     const [max, setMax] = useState(0);
-    const [showHeader, setShowHeader] = useContext(HeaderContext);
+    const [, setShowHeader] = useContext(HeaderContext);
 
     useEffect(() => {
         getRecipeCategories(params.categoryId)
@@ -23,8 +23,8 @@ function Category() {
     }, [params.categoryId]);
 
     useEffect(() => {
-      setShowHeader(true)
-    }, [showHeader]);
+      setShowHeader(true);
+    }, [setShowHeader]);
 
   return (
     <div className="font-['Comfortaa']">

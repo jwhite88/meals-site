@@ -1,42 +1,40 @@
-import React, {useState, useEffect, useRef, useContext, useCallback } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  useCallback,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './Header.css'
-import HeaderContext from '../utils/showhideheader'
-import { recipeSearch } from '../utils/recipeapiFns'
+import "./Header.css";
+import HeaderContext from "../utils/showhideheader";
+import { recipeSearch } from "../utils/recipeapiFns";
 
-import { categories } from '../utils/categories'
+import { categories } from "../utils/categories";
 
 function Header() {
   const categoryHolder = useRef();
-  const searchInput = useRef()
+  const searchInput = useRef();
   const [search, setSearch] = useState("");
- const [showHeader, setShowHeader, , setRecipeSearchResults ] = useContext(HeaderContext)
- const navigate = useNavigate()
+  const [showHeader, setShowHeader, , setRecipeSearchResults] =
+    useContext(HeaderContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-   // categoryHolder.current.style['color'] = 'blue'
-    return () => {
-      
-    };
-  }, []);
-
-  useEffect(() => {
-    setShowHeader(true)
-  }, [showHeader]);
+    setShowHeader(true);
+  }, [setShowHeader]);
 
   const handleSearchChange = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
     setSearch(evt.target.value);
-  }
+  };
 
-   const handleSubmit = useCallback(
-     (evt) => {
-       evt.preventDefault();
-       console.log(evt.keyCode);
-       if (evt.keyCode === 13) {
-         console.log("yes 13");
-          console.log('from search')
-          recipeSearch(search)
+  const handleSubmit = useCallback(
+    (evt) => {
+      evt.preventDefault();
+      console.log(evt.keyCode);
+      if (evt.keyCode === 13) {
+        recipeSearch(search)
           .then((result) => {
             console.log(result.meals);
             setRecipeSearchResults(result.meals);
@@ -47,14 +45,12 @@ function Header() {
           })
           .catch((err) => {
             console.log(`An ${err} has occurred`);
-          })
-         searchInput.current.value=""
-       }
-     },
-     [search]
-   );
-   ;
-
+          });
+        searchInput.current.value = "";
+      }
+    },
+    [search, setRecipeSearchResults, navigate]
+  );
   return (
     <div className={`${showHeader ? "bg-image" : ""}`}>
       <nav className="relative flex flex-row  justify-between items-center h-12 px-8 bg-greeny-500 font-['Comfortaa'] text-lg">
@@ -106,4 +102,4 @@ function Header() {
   );
 }
 
-export default Header
+export default Header;
