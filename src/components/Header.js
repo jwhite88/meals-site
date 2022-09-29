@@ -5,10 +5,13 @@ import React, {
   useContext,
   useCallback,
 } from "react";
+import HamburgerDrawer, { useFocusBounder } from "react-hamburger-drawer";
+import { slide as Menu } from "react-burger-menu";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import HeaderContext from "../utils/showhideheader";
 import { recipeSearch } from "../utils/recipeapiFns";
+import savoryrecipies from "../assets/images/savoryrecipes.svg";
 
 import { categories } from "../utils/categories";
 
@@ -55,9 +58,15 @@ function Header() {
     <div className={`${showHeader ? "bg-image" : ""}`}>
       <nav className="relative flex flex-row  justify-between items-center h-12 px-8 bg-greeny-500 font-['Comfortaa'] text-lg">
         <div>
-          <Link to="/">Logo</Link>
+          <Link to="/">
+            <img
+              className="min-w-[20rem] max-w-[20rem]"
+              src={savoryrecipies}
+              alt="Savory Recipes"
+            />
+          </Link>
         </div>
-        <div className="pl-48">
+        <div className="lg:ml-[-200px]">
           <input
             ref={searchInput}
             type="text"
@@ -75,18 +84,20 @@ function Header() {
               className="flex flex-row recipe-menu text-offblack-900 "
               ref={categoryHolder}
             >
-              {categories.map((category, idx) => {
-                return (
-                  <li key={idx} className="pr-5 hover:text-offblack-50">
-                    <Link
-                      className="hover:bg-greeny-100 p-2 rounded-md"
-                      to={`category/${category}`}
-                    >
-                      {category}
-                    </Link>
-                  </li>
-                );
-              })}
+              <Menu width={"15rem"} right>
+                {categories.map((category, idx) => {
+                  return (
+                    <li key={idx} className="pr-5 hover:text-offblack-50">
+                      <Link
+                        className="hover:bg-greeny-100 p-2 rounded-md"
+                        to={`category/${category}`}
+                      >
+                        {category}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </Menu>
             </ul>
           </div>
         </div>
