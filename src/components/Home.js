@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { getRecentRecipes } from "../utils/recipeapiFns";
 import HeaderContext from '../utils/showhideheader';
 
 function Home() {
   const [recentMeals, setRecentMeals] = useState([]);
-  const [showHeader, setShowHeader] = useContext(HeaderContext);
+  const [, setShowHeader] = useContext(HeaderContext);
   useEffect(() => {
-    axios.get("https://www.themealdb.com/api/json/v2/9973533/latest.php")
+    getRecentRecipes()
     .then((recent) => {
       console.log(recent.data.meals); 
       setRecentMeals(recent.data.meals)
@@ -23,7 +23,7 @@ function Home() {
   return (
     <div>
       <section>
-        <h2 className='recipe-headings text-center text-4xl py-8'>
+        <h2 className="font-['Merienda'] text-center text-4xl py-8">
           Recent Recipes
         </h2>
         <div className='px-16'>

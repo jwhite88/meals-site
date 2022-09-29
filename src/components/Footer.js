@@ -6,7 +6,7 @@ import { ImFacebook2 } from "react-icons/im";
 
 function Footer() {
   return (
-    <div className='bg-orange-800 py-4 mt-36'>
+    <div className='bg-greeny-400 py-4 mt-36'>
       <section className='flex flex-row justify-between px-48 py-4'>
         <div>
           <h4 className="text-2xl text-center pr-14 font-['Comfortaa']">

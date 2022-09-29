@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
 import HeaderContext from '../utils/showhideheader'
-import { loadMore } from '../utils/recipeapiFns'
+import { getRecipeCategories, loadMore } from '../utils/recipeapiFns'
 
 function Category() {
     const params = useParams()
     const [recipes, setRecipes] = useState([]);
-    const [count, setCount] = useState(12);
+    const [count, setCount] = useState(0);
     const [max, setMax] = useState(0);
     const [showHeader, setShowHeader] = useContext(HeaderContext);
 
     useEffect(() => {
-        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.categoryId}`)
+        getRecipeCategories(params.categoryId)
         .then((meals) => {  
             setCount(12);
             setMax(meals.data.meals.length)
@@ -60,7 +59,7 @@ function Category() {
         {count < max && (
           <button
             className="block border-solid border-[1.75px] border-teal-800 rounded-md min-w-[8rem] mt-4 text-xl"
-            onClick={() => loadMore(count, setCount, max)}
+            onClick={() => loadMore(count, 12, setCount, max)}
           >
             Load More
           </button>

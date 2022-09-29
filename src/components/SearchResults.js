@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React, { useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import HeaderContext from '../utils/showhideheader'
 import { loadMore } from '../utils/recipeapiFns';
@@ -6,7 +6,7 @@ import { loadMore } from '../utils/recipeapiFns';
 export default function SearchResults() {
     const [count, setCount] = useState(10);
     const [max, setMax] = useState(0);
-    const [showHeader, setShowHeader, recipeSearchResults, setRecipeSearchResults ] = useContext(HeaderContext)
+    const [, , recipeSearchResults,  ] = useContext(HeaderContext)
   return (
     <div>
       <section className='container mx-auto'>

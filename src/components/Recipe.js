@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { getRecipe } from "../utils/recipeapiFns";
 import HeaderContext from '../utils/showhideheader';
 import { GiSpoon } from 'react-icons/gi'
 
@@ -13,10 +13,8 @@ function Recipe() {
     const [instructions, setInstructions] = useState([]);
     const [showHeader, setShowHeader] = useContext(HeaderContext);
 
-    let x = true;
-
     useEffect(() => {
-        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.recipeId}`)
+        getRecipe(params.recipeId)
         .then((data) => {
             console.log(data.data.meals)
             const mealData = data.data.meals;
