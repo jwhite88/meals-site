@@ -23,7 +23,7 @@ function Home() {
   return (
     <div>
       <section>
-        <h2 className="font-['Merienda'] text-center text-4xl py-8">
+        <h2 className="font-['Merienda'] text-darkgreen-800 text-center text-4xl py-8">
           Recent Recipes
         </h2>
         <div className='px-16'>

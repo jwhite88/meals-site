@@ -10,6 +10,7 @@ function Category() {
     const [max, setMax] = useState(0);
     const [, setShowHeader] = useContext(HeaderContext);
 
+
     useEffect(() => {
         getRecipeCategories(params.categoryId)
         .then((meals) => {  
