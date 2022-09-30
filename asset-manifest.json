@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/meals-site/static/css/main.827c97bc.css",
+    "main.js": "/meals-site/static/js/main.ff8a6cd2.js",
+    "static/js/787.827aeb84.chunk.js": "/meals-site/static/js/787.827aeb84.chunk.js",
+    "static/media/meals-unsplash-v1.jpg": "/meals-site/static/media/meals-unsplash-v1.aff6f8bce800b0494ce4.jpg",
+    "static/media/savoryrecipes.svg": "/meals-site/static/media/savoryrecipes.d8d635bde15578edb3ada48f07cfdc70.svg",
+    "index.html": "/meals-site/index.html",
+    "main.827c97bc.css.map": "/meals-site/static/css/main.827c97bc.css.map",
+    "main.ff8a6cd2.js.map": "/meals-site/static/js/main.ff8a6cd2.js.map",
+    "787.827aeb84.chunk.js.map": "/meals-site/static/js/787.827aeb84.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.827c97bc.css",
+    "static/js/main.ff8a6cd2.js"
+  ]
+}
